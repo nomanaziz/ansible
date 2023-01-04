@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: ubuntu update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install Apache2 package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: centos update repository index
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Install httpd2 package
+    dnf:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "CentOS"
