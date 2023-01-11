@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install Apache2 and nano package
+    apt:
+      name:
+        - apache2
+        - nano
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install httpd2 package
+    dnf:
+      name:
+        - apache2
+        - nano
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
