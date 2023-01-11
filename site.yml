@@ -34,3 +34,20 @@
       name: apache2
       state: latest
     when: ansible_distribution == "CentOS"
+
+- hosts: workstations
+  become: true
+  tasks:
+
+  - name: install unzip 
+    package: 
+      name: unzip
+
+  - name: install unzip
+    unarchive:
+      src: https://unzip.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+      owner: root
+      group: root
