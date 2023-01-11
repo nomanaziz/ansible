@@ -14,6 +14,15 @@
       name: apache2
       state: latest
     when: ansible_distribution == "Ubuntu"
+
+  - name: Start Apache
+    tags: apache_run
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
+
  
   - name: copy file 
     tags: html,copy
@@ -51,3 +60,4 @@
       mode: 0755
       owner: root
       group: root
+
