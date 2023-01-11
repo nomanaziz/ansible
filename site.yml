@@ -14,6 +14,15 @@
       name: apache2
       state: latest
     when: ansible_distribution == "Ubuntu"
+ 
+  - name: copy file 
+    tags: html,copy
+    copy:
+      src: index.html
+      dest: /var/www/html/
+      owner: root
+      group: root
+      mode: 0644 
 
   - name: centos update repository index
     dnf:
